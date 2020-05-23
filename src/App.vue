@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <FormPreview :formdata="formdata"/>
+      <FormPreview :title="title" :components="components"/>
 
       <FormBuilder @componentAdded="updatePreview($event)" />
   </div>
@@ -9,7 +9,14 @@
 <script>
 import FormBuilder from './components/FormBuilder.vue'
 import FormPreview from './components/FormPreview.vue'
-import CompleteFormData from './models/CompleteFormData.js'
+
+let preFilledComponents = [{
+        type: "b-form-datepicker",
+        title: "My first component",
+        props: {
+          placeholder: "Choose a date",
+        }
+      }];
 
 export default {
   name: 'App',
@@ -19,12 +26,14 @@ export default {
   },
   data() {
     return {
-      formdata: new CompleteFormData("This is my form", [])
+      title: "This is OwnForm",
+      components: preFilledComponents
     }
   },
   methods: {
     updatePreview(componentData) {
-      this.formdata.components.push(componentData)
+      console.log(componentData)
+      this.components.push(componentData[0])
     }
   }
 }

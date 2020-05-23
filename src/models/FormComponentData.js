@@ -1,9 +1,10 @@
 export default class FormComponentData
 {
-    constructor(title, type, placeholder)
+    constructor(title, type, props)
     {
         this.title = title;
         this.type = type;
-        this.placeholder = placeholder;
+
+        this.props = props;
     }
 }

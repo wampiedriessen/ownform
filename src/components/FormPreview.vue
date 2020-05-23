@@ -1,19 +1,23 @@
 <template>
-  <div>
-    <h1>{{ formdata.title }}</h1>
-    <div v-for="(comp, _i) in formdata.components" :key="`component-${_i}`" >
-      <component :is="comp.type"></component>
+  <div class="components">
+    <h1>{{ title }}</h1>
+    <div v-for="(comp, _i) in components" :key="`component-${_i}`">
+      <b-form-group
+        :id="`input-group-${_i}`"
+        :label="`${_i+1}) ${comp.title}`"
+        :label-for="`input-${_i}`">
+        <component :id="`input-${_i}`" :is="comp.type" v-bind="comp.props"></component>
+      </b-form-group>
     </div>
   </div>
 </template>
 
 <script>
-import CompleteFormData from '../models/CompleteFormData.js'
-
 export default {
   name: 'FormPreview',
   props: {
-    formdata: CompleteFormData,
+    title: String,
+    components: Array,
   },
 }
 </script>
