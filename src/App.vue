@@ -1,49 +1,49 @@
 <template>
-  <div id="app">
-      <FormPreview :title="title" :components="components"/>
+    <div class="container" id="app">
+        <FormPreview id="preview" :title="title" :components="components"/>
 
-      <FormBuilder @componentAdded="updatePreview($event)" />
-  </div>
+        <FormBuilder id="builder" @componentAdded="updatePreview($event)" />
+    </div>
 </template>
 
 <script>
 import FormBuilder from './components/FormBuilder.vue'
 import FormPreview from './components/FormPreview.vue'
 
-let preFilledComponents = [{
-        type: "b-form-datepicker",
-        title: "My first component",
-        props: {
-          placeholder: "Choose a date",
-        }
-      }];
-
 export default {
-  name: 'App',
-  components: {
-    FormBuilder,
-    FormPreview,
-  },
-  data() {
-    return {
-      title: "This is OwnForm",
-      components: preFilledComponents
+    name: 'App',
+    components: {
+        FormBuilder,
+        FormPreview,
+    },
+    data() {
+        return {
+            title: "This is OwnForm",
+            components: []
+        }
+    },
+    methods: {
+        updatePreview(componentData) {
+            this.components.push(componentData[0])
+        }
     }
-  },
-  methods: {
-    updatePreview(componentData) {
-      console.log(componentData)
-      this.components.push(componentData[0])
-    }
-  }
 }
 </script>
 
 <style scoped>
 #app {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#app > div {
+    margin: 7px;
+}
+#preview {
+    flex-grow: 3;
+}
+#builder {
+    flex-grow: 1;
 }
 </style>
