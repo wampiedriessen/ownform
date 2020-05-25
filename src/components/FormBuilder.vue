@@ -35,8 +35,6 @@
 
 <script>
 import FormComponentData from '../models/FormComponentData.js'
-import PropertiesOfInputBuilder from './properties/PropertiesOfInputBuilder'
-import PropertiesOfTextValueBuilder from './properties/PropertiesOfTextValueBuilder'
 
 export default {
     name: "FormBuilder",
@@ -53,16 +51,13 @@ export default {
                 {text: "Generic Input",   value: { component: "ownform-input",       additionalPropsComponent: "properties-of-input-builder" } },
                 {text: "Dropdown",        value: { component: "ownform-dropdown",    additionalPropsComponent: "properties-of-text-value-builder" } },
                 {text: "Radio buttons",   value: { component: "ownform-radio",       additionalPropsComponent: "properties-of-text-value-builder" } },
+                {text: "Range Slider",    value: { component: "ownform-slider",      additionalPropsComponent: "properties-of-slider-builder" } },
                 // {text: "Text Area",       value: { component: "ownform-textarea",    additionalPropsComponent: null } },
                 // {text: "Datepicker",      value: { component: "ownform-datepicker",  additionalPropsComponent: null } },
                 // {text: "Timepicker",      value: { component: "ownform-timepicker",  additionalPropsComponent: null } },
                 // {text: "File Input",      value: { component: "ownform-file",        additionalPropsComponent: null } },
             ]
         };
-    },
-    components: {
-        PropertiesOfInputBuilder,
-        PropertiesOfTextValueBuilder,
     },
     methods: {
         addComponent() {

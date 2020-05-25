@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <b-form-radio-group v-bind="$props"></b-form-radio-group>
-    </div>
+    <b-form-radio-group v-bind="$props"></b-form-radio-group>
 </template>
 
 <script>
