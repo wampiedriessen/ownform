@@ -22,11 +22,11 @@
             <b-card v-if="formdata.type.additionalPropsComponent">
                 <component :is="formdata.type.additionalPropsComponent" v-model="formdata.props"></component>
             </b-card>
-            <b-form-group class="submitbutton">
+            <b-form-group class="submitbutton" v-if="!HideSubmitButton">
                 <b-button variant="primary" type="submit">Add Form Component</b-button>
             </b-form-group>
         </b-form>
-        <b-card v-if="formdata.type.component">
+        <b-card v-if="showPreview">
             <h3>Component preview</h3>
             <component :is="formdata.type.component" v-bind="formdata.props"></component>
         </b-card>
@@ -38,6 +38,10 @@ import FormComponentData from '../models/FormComponentData.js'
 
 export default {
     name: "FormBuilder",
+    props: {
+        'HideSubmitButton': Boolean,
+        'HidePreview': Boolean,
+    },
     data() {
         return {
             formdata: {
@@ -58,6 +62,11 @@ export default {
                 // {text: "File Input",      value: { component: "ownform-file",        additionalPropsComponent: null } },
             ]
         };
+    },
+    computed: {
+        showPreview() {
+            return !this.HidePreview && this.formdata.type.component
+        }
     },
     methods: {
         addComponent() {

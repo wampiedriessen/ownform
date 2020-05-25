@@ -1,8 +1,19 @@
 <template>
-    <div class="container" id="app">
-        <FormPreview id="preview" :title="title" :components="components"/>
+    <div class="container" id="container">
+        <h1>Create your ownForm</h1>
+        <div id="app">
+            <FormPreview id="preview" :title="title" :components="components"/>
 
-        <FormBuilder id="builder" @componentAdded="updatePreview($event)" />
+            <div id="sidebar">
+                <b-form-group label="The title of your ownForm">
+                    <b-form-input v-model="title" placeholder="The title of your Form"></b-form-input>
+                </b-form-group>
+                <b-button v-b-modal="`formbuilder-modal`" variant="primary">Add Form Elements</b-button>
+            </div>
+            <b-modal id="formbuilder-modal" title="Add Form Element">
+                <FormBuilder id="builder" @componentAdded="updatePreview($event)" hide-submit-button hide-preview />
+            </b-modal>
+        </div>
     </div>
 </template>
 
@@ -18,7 +29,7 @@ export default {
     },
     data() {
         return {
-            title: "This is OwnForm",
+            title: "",
             components: []
         }
     },
@@ -31,8 +42,10 @@ export default {
 </script>
 
 <style scoped>
-#app {
+#container{
     margin-top: 50px;
+}
+#app {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -43,7 +56,7 @@ export default {
 #preview {
     flex-grow: 3;
 }
-#builder {
-    flex-grow: 1;
+#sidebar {
+    width: 250px;
 }
 </style>
